@@ -83,7 +83,7 @@ router.put('/edit-item/:itemId',
 		const errors = validationResult(req);
 		if(!errors.isEmpty()) res.status(400).json("ERROR: must provide a valid integer item ID");
 		else{
-			//try to retreive record from db and update it. If not found, create a new record with the provided data
+			//try to retreive record from db and update it. If not found, create a new record with data
 		}
 
 })
