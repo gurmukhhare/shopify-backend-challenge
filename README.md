@@ -18,6 +18,18 @@ Before getting into the details of the API, it is important to mention that the 
 | /warehouses/:warehouseId? | GET | Retrieve all existing warehouses. If optional parameter 'warehouseId' provided, retrieve all inventory assigned to that warehouse |
 | /warehouses | POST | Create a new warehouse |
 
+### NOTE
+There are 2 data objects being used in my application: an item and a warehouse. The JSON structure of the objects required in API requests looks like the following:
+
+item object:
+```javascript
+{ "name": ,
+  "stock": ,
+  "description": ,
+  "warehouseId":
+}
+```
+
 
 
 
