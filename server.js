@@ -17,7 +17,7 @@ app.use(cors());
 app.use('/inventory', inventoryRoutes);
 app.use('/warehouse', warehouseRoutes);
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT || 3000, ()=>{
   console.log("app is running");
 })
 
