@@ -12,40 +12,6 @@ const db = knex({
   }
 });
 
-router.get('', (req,res)=>{
-  res.json('warehouse route is working');
-})
-
-/**
-* Endpoint to create new warehouse location
-* @Params: name, location
-* @return: created warehouse object if successful, otherwise returns appropriate error code/message
-*/
-router.post('', [
-  check('name', 'Name field is required').not().isEmpty(),
-  check('location', 'location field is required').not().isEmpty(),
-  ],(req,res)=>{
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-      res.status(400).json("ERROR: invalid information entered for new warehouse");
-    } 
-    else{
-      const { name, location } = req.body;
-      db('warehouses')
-      .returning('*')
-      .insert({
-        name: name,
-        location: location
-      }).then(result=>{
-        res.status(201).json(result[0]);
-      }).catch(err=>{
-        res.status(409).json("ERROR: failed to create warehouse");
-        console.log(err);
-      })
-    }
-
-  })
-
 /**
 * Endpoint to view a list of existing warehouses or the inventory in a specific warehouse based on provided warehouseId
 * @Params: warehouseId (OPTIONAL)
@@ -87,6 +53,36 @@ router.get('/:warehouseId?', (req,res)=>{
     })
   }
 
-})  
+})
+
+/**
+* Endpoint to create new warehouse location
+* @Params: name, location
+* @return: created warehouse object if successful, otherwise returns appropriate error code/message
+*/
+router.post('', [
+  check('name', 'Name field is required').not().isEmpty(),
+  check('location', 'location field is required').not().isEmpty(),
+  ],(req,res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      res.status(400).json("ERROR: invalid information entered for new warehouse");
+    } 
+    else{
+      const { name, location } = req.body;
+      db('warehouses')
+      .returning('*')
+      .insert({
+        name: name,
+        location: location
+      }).then(result=>{
+        res.status(201).json(result[0]);
+      }).catch(err=>{
+        res.status(409).json("ERROR: failed to create warehouse");
+        console.log(err);
+      })
+    }
+
+  })
 
 module.exports = router;
