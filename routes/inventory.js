@@ -7,10 +7,8 @@ const { check,validationResult } = require('express-validator');
 const db = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'gurmukhhare',
-    password : '',
-    database : 'shopify-backend-db'
+    connectionString : process.env.DATABASE_URL,
+    ssl: true,
   }
 });
 
