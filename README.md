@@ -29,7 +29,7 @@ item object:
   "warehouseId":
 }
 ```
-(** providing a 'warehouseId' for an item object is optional. If provided, the backend code will check if it is a valid existing warehouse before assigning item to that warehouse. If not provided in body by client, item will be assigned to the Main Warehouse located in Vancouver,Canada by default**)
+(** ADDITIONAL FEATURE FUNCTIONALITY: providing a 'warehouseId' for an item object is optional. If provided, the backend code will check if it is a valid existing warehouse before assigning item to that warehouse. If not provided in request body by client, item will be assigned to the Main Warehouse located in Vancouver,Canada by default**)
 
 warehouse object:
 ```javascript
