@@ -41,7 +41,8 @@ router.get('/view/:itemId?', (req,res)=>{
       res.status(400).json("ERROR: could not retrieve item");
       console.log(err);
     })
-  } else{
+  } 
+  else{
     db.select('*')
     .from('inventory')
     .then(items=>{
@@ -79,7 +80,8 @@ router.post('/create-item', [
         }).then(result=>{
           if(!result.length){
             res.status(404).json("ERROR: invalid warehouseId provided, warehouse does not exist");
-          } else{
+          } 
+          else{
             db('inventory')
             .returning('*')
             .insert({
@@ -95,7 +97,8 @@ router.post('/create-item', [
             })
           }
         })
-      } else{
+      } 
+      else{
         db('inventory')
         .returning('*')
         .insert({
@@ -182,7 +185,8 @@ router.put('/edit-item/:itemId',
             res.status(400).json("ERROR: could not update inventory item");
             console.log(err);
           })
-        } else {
+        } 
+        else {
           db('inventory')
           .returning('*')
           .insert({

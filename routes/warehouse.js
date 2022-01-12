@@ -30,7 +30,8 @@ router.post('/create-warehouse', [
     const errors = validationResult(req);
     if(!errors.isEmpty()){
       res.status(400).json("ERROR: invalid information entered for new warehouse");
-    } else{
+    } 
+    else{
       const { name, location } = req.body;
       db('warehouses')
       .returning('*')
@@ -50,7 +51,7 @@ router.post('/create-warehouse', [
 /**
 * Endpoint to view a list of existing warehouses or the inventory in a specific warehouse based on provided warehouseId
 * @Params: warehouseId (OPTIONAL)
-* @return: array of warehouse objects or an array of items if successful, otherwise returns appropriate error code/message
+* @return: array of warehouse objects or an array of items in a specific warehouse if successful, otherwise returns appropriate error code/message
 */
 router.get('/view/:warehouseId?', (req,res)=>{
   if(req.params.warehouseId){
@@ -62,7 +63,8 @@ router.get('/view/:warehouseId?', (req,res)=>{
     }).then(result=>{
       if(!result.length){
         res.status(404).json("ERROR: warehouse with provided ID does not exist")
-      } else{
+      } 
+      else{
         db.select('*')
         .from('inventory')
         .where({
@@ -75,7 +77,8 @@ router.get('/view/:warehouseId?', (req,res)=>{
         })
       }
     })
-  } else{
+  } 
+  else{
     db.select('*')
     .from('warehouses')
     .then(warehouses=>{
