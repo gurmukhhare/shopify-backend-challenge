@@ -3,7 +3,7 @@ const router = express.Router();
 const knex = require ('knex');
 const { check,validationResult } = require('express-validator');
 
-//postgres database configuration
+//postgres database config
 const db = knex({
   client: 'pg',
   connection: {
@@ -24,10 +24,10 @@ router.get('/', (req,res)=>{
 * @return: created warehouse object if successful, otherwise returns appropriate error code/message
 */
 router.post('/create-warehouse', [
-	check('name', 'Name field is required').not().isEmpty(),
-	check('location', 'location field is required').not().isEmpty(),
-	],(req,res)=>{
-		const errors = validationResult(req);
+  check('name', 'Name field is required').not().isEmpty(),
+  check('location', 'location field is required').not().isEmpty(),
+  ],(req,res)=>{
+    const errors = validationResult(req);
     if(!errors.isEmpty()){
       res.status(400).json("ERROR: invalid information entered for new warehouse");
     } else{
@@ -44,8 +44,8 @@ router.post('/create-warehouse', [
         console.log(err);
       })
     }
-  
-})
+
+  })
 
 /**
 * Endpoint to view a list of existing warehouses or the inventory in a specific warehouse based on provided warehouseId

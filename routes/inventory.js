@@ -3,7 +3,7 @@ const router = express.Router();
 const knex = require ('knex');
 const { check,validationResult } = require('express-validator');
 
-//postgres database configuration
+//postgres database config
 const db = knex({
   client: 'pg',
   connection: {
@@ -15,7 +15,7 @@ const db = knex({
 });
 
 router.get('/', (req,res)=>{
-	res.json('inventory route is working');
+    res.json('inventory route is working');
 })
 
 /**
@@ -24,7 +24,7 @@ router.get('/', (req,res)=>{
 * @return: retrieved item or array of items if successful, otherwise returns error codes/messages if item cannot be found or retrieved
 */
 router.get('/view/:itemId?', (req,res)=>{
-	if(req.params.itemId){
+    if(req.params.itemId){
     const id  = req.params.itemId;
     db.select('*')
     .from('inventory')
@@ -42,8 +42,8 @@ router.get('/view/:itemId?', (req,res)=>{
       console.log(err);
     })
 
-	} else{
-		db.select('*')
+    } else{
+        db.select('*')
     .from('inventory')
     .then(items=>{
       res.status(200).json(items);
@@ -51,7 +51,7 @@ router.get('/view/:itemId?', (req,res)=>{
       res.status(400).json("ERROR: could not fetch inventory items");
       console.log(err);
     })
-	}
+    }
 
 })
 
@@ -61,15 +61,15 @@ router.get('/view/:itemId?', (req,res)=>{
 * @return: created item object if successful, otherwise returns error codes/messages if item is duplicate, invalid input, etc
 */
 router.post('/create-item', [
-	check('name', 'Name field is required').not().isEmpty(),
-	check('description', 'description field is required').not().isEmpty(),
-	check('stock', 'stock field is required').not().isEmpty(),
-	check('stock', 'stock amount must be between the min and max allowed').isInt({min:0, max:10})
-	],(req,res)=>{
-		const errors = validationResult(req);
-		if(!errors.isEmpty()){
-			res.status(400).json("ERROR: invalid information entered for new inventory item");
-		} 
+    check('name', 'Name field is required').not().isEmpty(),
+    check('description', 'description field is required').not().isEmpty(),
+    check('stock', 'stock field is required').not().isEmpty(),
+    check('stock', 'stock amount must be between the min and max allowed').isInt({min:0, max:10})
+    ],(req,res)=>{
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            res.status(400).json("ERROR: invalid information entered for new inventory item");
+        } 
     else{
       const { name, description, stock, warehouseId } = req.body;
       if(warehouseId){
@@ -111,7 +111,7 @@ router.post('/create-item', [
         })
 
       }
-		}
+        }
 })
 
 /**
@@ -120,14 +120,14 @@ router.post('/create-item', [
 * @return: deleted item object if successful, otherwise returns error codes/messages if item cannot be removed or not found
 */
 router.delete('/delete-item/:itemId',
-	check('itemId', "Item's ID field is required and must be a valid integer value").not().isEmpty().isInt(), 
-	(req,res)=>{
-		const errors = validationResult(req);
-		if(!errors.isEmpty()) {
+    check('itemId', "Item's ID field is required and must be a valid integer value").not().isEmpty().isInt(), 
+    (req,res)=>{
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
       res.status(400).json("ERROR: must provide a valid integer item ID");
     }
-		else{
-			//try to remove the item from the db, if not found return an error
+        else{
+            //try to remove the item from the db, if not found return an error
       const id = req.params.itemId;
       db('inventory')
       .returning('*')
@@ -145,7 +145,7 @@ router.delete('/delete-item/:itemId',
         res.status(400).json("ERROR: item with specified ID could not be removed");
         console.log(err);
       })
-		}
+        }
 })
 
 /**
@@ -155,18 +155,18 @@ router.delete('/delete-item/:itemId',
 */
 router.put('/edit-item/:itemId',
   [
-	check('itemId', "Item's ID field is required and must be a valid integer value").not().isEmpty().isInt(),
+    check('itemId', "Item's ID field is required and must be a valid integer value").not().isEmpty().isInt(),
   check('name', 'Name field is required').not().isEmpty(),
   check('description', 'description field is required').not().isEmpty(),
   check('stock', 'stock field is required').not().isEmpty(),
   check('stock', 'stock amount must be between the min and max allowed').isInt({min:0, max:10})
   ],
-	(req,res)=>{
-		const errors = validationResult(req);
-		if(!errors.isEmpty()) {
+    (req,res)=>{
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
       res.status(400).json("ERROR: must provide a valid integer item ID and item details");
     }
-		else{
+        else{
       const id = req.params.itemId;
       const { name, description, stock } = req.body;
       db.select('*')
@@ -199,7 +199,7 @@ router.put('/edit-item/:itemId',
           })
         }
       })
-		}
+        }
 
 })
 

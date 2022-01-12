@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-//forwarding requests to appropriate router
+//forward requests to appropriate router
 app.use('/inventory', inventoryRoutes);
 app.use('/warehouse', warehouseRoutes);
 
