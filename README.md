@@ -9,10 +9,10 @@ are required for the evaluators. I utilized Postman to send requests to the appl
 ## API Documentation
 Before getting into the details of the API, it is important to mention that the extra feature I have chosen to implement is the 'ability to create warehouses/locations and assign inventory to specific locations'. The corresponding API for this feature are also listed below.
 
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
+| Endpoint | HTTP verb | Description |
+| --- | --- | --- |
+| /inventory/items/:itemId? | GET | Retrieve all items currently stored in the inventory. If optional parameter 'itemId' provided, retrieve that specific item |
+| /inventory/items | POST | Create new inventory item |
 
 
 
