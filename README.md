@@ -12,7 +12,13 @@ Before getting into the details of the API, it is important to mention that the 
 | Endpoint | HTTP verb | Description |
 | --- | --- | --- |
 | /inventory/items/:itemId? | GET | Retrieve all items currently stored in the inventory. If optional parameter 'itemId' provided, retrieve that specific item |
-| /inventory/items | POST | Create new inventory item |
+| /inventory/items/:itemId | DELETE | Delete inventory item with specified itemId, if exists |
+| /inventory/items/:itemId | PUT | Edit inventory item with specified itemId. If not exists, create the inventory item |
+| /inventory/items | POST | Create inventory item |
+| /warehouses/:warehouseId? | GET | Retrieve all existing warehouses. If optional parameter 'warehouseId' provided, retrieve all inventory assigned to that warehouse |
+| /warehouses | POST | Create a new warehouse |
+
+
 
 
 
