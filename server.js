@@ -15,7 +15,7 @@ app.use(cors());
 
 //forward requests to appropriate router
 app.use('/inventory', inventoryRoutes);
-app.use('/warehouse', warehouseRoutes);
+app.use('/warehouses', warehouseRoutes);
 
 app.listen(process.env.PORT || 3000, ()=>{
   console.log("app is running");

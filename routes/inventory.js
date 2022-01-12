@@ -12,7 +12,7 @@ const db = knex({
   }
 });
 
-router.get('/', (req,res)=>{
+router.get('', (req,res)=>{
     res.json('inventory route is working');
 })
 
@@ -21,7 +21,7 @@ router.get('/', (req,res)=>{
 * @Params: itemId (OPTIONAL)
 * @return: retrieved item or array of items if successful, otherwise returns error codes/messages if item cannot be found or retrieved
 */
-router.get('/view/:itemId?', (req,res)=>{
+router.get('/items/:itemId?', (req,res)=>{
   if(req.params.itemId){
     const id  = req.params.itemId;
     db.select('*')
@@ -58,7 +58,7 @@ router.get('/view/:itemId?', (req,res)=>{
 * @Params: name, description, stock, warehouseId(OPTIONAL, part of additional feature to assign items to specifc warehouses)
 * @return: created item object if successful, otherwise returns error codes/messages if item is duplicate, invalid input, etc
 */
-router.post('/create-item', [
+router.post('/items', [
   check('name', 'Name field is required').not().isEmpty(),
   check('description', 'description field is required').not().isEmpty(),
   check('stock', 'stock field is required').not().isEmpty(),
@@ -119,7 +119,7 @@ router.post('/create-item', [
 * @Params: itemId
 * @return: deleted item object if successful, otherwise returns error codes/messages if item cannot be removed or not found
 */
-router.delete('/delete-item/:itemId',
+router.delete('/items/:itemId',
   check('itemId', "Item's ID field is required and must be a valid integer value").not().isEmpty().isInt(), 
   (req,res)=>{
     const errors = validationResult(req);
@@ -153,7 +153,7 @@ router.delete('/delete-item/:itemId',
 * @Params: itemId, name, description, stock
 * @return: updated/created item object if successful, otherwise returns error codes/messages if item cannot be updated or created
 */
-router.put('/edit-item/:itemId',
+router.put('/items/:itemId',
   [
   check('itemId', "Item's ID field is required and must be a valid integer value").not().isEmpty().isInt(),
   check('name', 'Name field is required').not().isEmpty(),

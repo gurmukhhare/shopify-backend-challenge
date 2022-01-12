@@ -12,7 +12,7 @@ const db = knex({
   }
 });
 
-router.get('/', (req,res)=>{
+router.get('', (req,res)=>{
   res.json('warehouse route is working');
 })
 
@@ -21,7 +21,7 @@ router.get('/', (req,res)=>{
 * @Params: name, location
 * @return: created warehouse object if successful, otherwise returns appropriate error code/message
 */
-router.post('/create-warehouse', [
+router.post('', [
   check('name', 'Name field is required').not().isEmpty(),
   check('location', 'location field is required').not().isEmpty(),
   ],(req,res)=>{
@@ -51,7 +51,7 @@ router.post('/create-warehouse', [
 * @Params: warehouseId (OPTIONAL)
 * @return: array of warehouse objects or an array of items in a specific warehouse if successful, otherwise returns appropriate error code/message
 */
-router.get('/view/:warehouseId?', (req,res)=>{
+router.get('/:warehouseId?', (req,res)=>{
   if(req.params.warehouseId){
     const warehouseId  = req.params.warehouseId;
     db.select('*')
