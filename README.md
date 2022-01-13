@@ -55,6 +55,7 @@ Req body:
   "location": "Montreal, Canada"
 }
 ```
+
 Response:
 status code: 201 Created
 ```javascript
@@ -90,6 +91,7 @@ status code: 200 OK
 ```
 #### Ex: Create a new Inventory Item and assign to a specific warehouse
 POST `https://shopify-backend-2022.herokuapp.com/inventory/items`
+
 Req body:
 ```javascript
 {
@@ -99,6 +101,7 @@ Req body:
     "warehouseId": "3"
 }
 ```
+
 Response: 
 status code: 201 Created
 ```javascript
@@ -112,6 +115,7 @@ status code: 201 Created
 ```
 #### Ex: Retrieve all current inventory items
 GET `https://shopify-backend-2022.herokuapp.com/inventory/items`
+
 Response: 
 status code: 201 Created
 ```javascript
