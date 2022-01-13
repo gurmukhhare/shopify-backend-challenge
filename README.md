@@ -18,7 +18,7 @@ Before getting into the details of the API, it is important to mention that the 
 | /warehouses/:warehouseId? | GET | Retrieve all existing warehouses. If optional parameter 'warehouseId' provided, retrieve all inventory assigned to that warehouse |
 | /warehouses | POST | Create a new warehouse |
 
-### NOTE
+#### NOTE
 There are 2 data objects being used in my application: an item and a warehouse. The JSON structure of the objects required in API requests looks like the following:
 
 item object:
@@ -45,7 +45,7 @@ warehouse object:
 ## API Testing examples
 Below I have attached some examples of API usage for my backend application using Postman. Using the same Req body data I have shown below will result in responses with appropriate error codes (I have designed my application to reject creating duplicate warehouses and adding duplicated inventory items). Feel free to try anyways if you would like to see the error handling in my application as well.
 
-### Ex: Create a new Warehouse (additional feature)
+#### Ex: Create a new Warehouse (additional feature)
 POST `https://shopify-backend-2022.herokuapp.com/warehouses`
 
 Req body:
@@ -64,7 +64,7 @@ status code: 201 Created
   "location": "Montreal, Canada"
 }
 ```
-### Ex: Retrieve All Warehouses (additional feature)
+#### Ex: Retrieve All Warehouses (additional feature)
 GET `https://shopify-backend-2022.herokuapp.com/warehouses`
 
 Response:
@@ -88,7 +88,7 @@ status code: 200 OK
     }
 ]
 ```
-### Ex: Create a new Inventory Item and assign to a specific warehouse
+#### Ex: Create a new Inventory Item and assign to a specific warehouse
 POST `https://shopify-backend-2022.herokuapp.com/inventory/items`
 Req body:
 ```javascript
@@ -110,7 +110,7 @@ status code: 201 Created
     "warehouseid": 3
 }
 ```
-### Ex: Retrieve all current inventory items
+#### Ex: Retrieve all current inventory items
 GET `https://shopify-backend-2022.herokuapp.com/inventory/items`
 Response: 
 status code: 201 Created
