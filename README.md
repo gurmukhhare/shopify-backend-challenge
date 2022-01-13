@@ -23,17 +23,20 @@ There are 2 data objects being used in my application: an item and a warehouse. 
 
 item object:
 ```javascript
-{ "name": ,
+{ 
+  "name": ,
   "stock": ,
   "description": ,
   "warehouseId":
 }
+** stock for an inventory item must be in the range 0-10 inclusive (design choice). If not satisfied, server will return an error **
 ```
 ADDITIONAL FEATURE FUNCTIONALITY: providing a 'warehouseId' for an item object is optional. If provided, the backend code will check if it is a valid existing warehouse before assigning item to that warehouse. If warehouseId not provided in request body by client, item will be assigned to the Main Warehouse located in Vancouver,Canada by default
 
 warehouse object:
 ```javascript
-{ "name": ,
+{ 
+  "name": ,
   "location": 
 }
 ```
@@ -52,7 +55,7 @@ Req body:
 }
 ```
 Response:
-status code: 201 created
+status code: 201 Created
 ```javascript
 {
   "id": 3,
@@ -84,8 +87,27 @@ status code: 200 OK
     }
 ]
 ```
-
-
-
+### Ex: Create a new Inventory Item and assign to a specific warehouse
+POST `https://shopify-backend-2022.herokuapp.com/inventory/items`
+Req body:
+```javascript
+{
+    "name": "SampleItem",
+    "stock":"10",
+    "description": "new item description",
+    "warehouseId": "3"
+}
+```
+Response: 
+status code: 201 Created
+```javascript
+{
+    "id": 6,
+    "name": "SampleItem",
+    "stock": "10",
+    "description": "new item description",
+    "warehouseid": 3
+}
+```
 
 
