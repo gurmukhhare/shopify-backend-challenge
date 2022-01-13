@@ -7,7 +7,7 @@ To make evaluating the application simpler, the server is hosted on Heroku and c
 are required for the evaluators. I utilized Postman to send requests to the application's API endpoints (described in detail below). The application can also be accessed via HTTP requests using the 'curl' command from the terminal of your machine. Because I used Postman, this documentation is tailored accordingly.
 
 ## API Documentation
-Before getting into the details of the API, it is important to mention that the extra feature I have chosen to implement is the 'ability to create warehouses/locations and assign inventory to specific locations'. The corresponding API for this feature are also listed below.
+Before getting into the details of the API, it is important to mention that the extra feature I have chosen to implement is the 'ability to create warehouses/locations and assign inventory to specific locations'. The corresponding API for this feature in addition to the basic inventory CRUD requirements are listed below.
 
 | Endpoint | HTTP verb | Description |
 | --- | --- | --- |
