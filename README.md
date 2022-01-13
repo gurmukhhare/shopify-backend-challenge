@@ -43,7 +43,7 @@ warehouse object:
 ```
 
 ## API Testing examples
-Below I have attached some examples of API usage for my backend application. Using the same Req body data I have shown below will result in responses with appropriate error codes (I have designed my application to reject creating duplicate warehouses and adding duplicated invenotry items)
+Below I have attached some examples of API usage for my backend application using Postman. Using the same Req body data I have shown below will result in responses with appropriate error codes (I have designed my application to reject creating duplicate warehouses and adding duplicated inventory items)
 
 ### Ex: Create a new Warehouse (additional feature)
 POST `https://shopify-backend-2022.herokuapp.com/warehouses`
@@ -115,6 +115,7 @@ GET `https://shopify-backend-2022.herokuapp.com/inventory/items`
 Response: 
 status code: 201 Created
 ```javascript
+[
     {
         "id": 1,
         "name": "Item1",
@@ -138,4 +139,4 @@ status code: 201 Created
     }
 ]
 ```
-
+## Implementation Details
