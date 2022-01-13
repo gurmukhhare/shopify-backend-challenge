@@ -29,8 +29,9 @@ item object:
   "description": ,
   "warehouseId":
 }
-** stock for an inventory item must be in the range 0-10 inclusive (design choice). If not satisfied, server will return an error **
 ```
+** stock for an inventory item must be in the range 0-10 inclusive (design choice). If not satisfied, server will return an error **
+
 ADDITIONAL FEATURE FUNCTIONALITY: providing a 'warehouseId' for an item object is optional. If provided, the backend code will check if it is a valid existing warehouse before assigning item to that warehouse. If warehouseId not provided in request body by client, item will be assigned to the Main Warehouse located in Vancouver,Canada by default
 
 warehouse object:
