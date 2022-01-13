@@ -29,13 +29,60 @@ item object:
   "warehouseId":
 }
 ```
-(** ADDITIONAL FEATURE FUNCTIONALITY: providing a 'warehouseId' for an item object is optional. If provided, the backend code will check if it is a valid existing warehouse before assigning item to that warehouse. If not provided in request body by client, item will be assigned to the Main Warehouse located in Vancouver,Canada by default**)
+ADDITIONAL FEATURE FUNCTIONALITY: providing a 'warehouseId' for an item object is optional. If provided, the backend code will check if it is a valid existing warehouse before assigning item to that warehouse. If warehouseId not provided in request body by client, item will be assigned to the Main Warehouse located in Vancouver,Canada by default
 
 warehouse object:
 ```javascript
 { "name": ,
   "location": 
 }
+```
+
+## API Testing examples
+Below I have attached some examples of API usage for my backend application. Using the same Req body data I have shown below will result in responses with appropriate error codes (I have designed my application to reject creating duplicate warehouses and adding duplicated invenotry items)
+
+### Ex: Create a new Warehouse (additional feature)
+POST `https://shopify-backend-2022.herokuapp.com/warehouses`
+
+Req body:
+```javascript
+{ 
+  "name": "Warehouse API Test",
+  "location": "Montreal, Canada"
+}
+```
+Response:
+status code: 201 created
+```javascript
+{
+  "id": 3,
+  "name": "Warehouse API Test",
+  "location": "Montreal, Canada"
+}
+```
+### Ex: Retrieve All Warehouses (additional feature)
+GET `https://shopify-backend-2022.herokuapp.com/warehouses`
+
+Response:
+status code: 200 OK
+```javascript
+[
+    {
+        "id": 1,
+        "name": "MainWarehouse",
+        "location": "Vancouver, Canada"
+    },
+    {
+        "id": 2,
+        "name": "Warehouse2",
+        "location": "Toronto, Canada"
+    },
+    {
+        "id": 3,
+        "name": "Warehouse API Test",
+        "location": "Montreal, Canada"
+    }
+]
 ```
 
 
