@@ -141,7 +141,7 @@ status code: 201 Created
 ```
 ## Basic Implementation Details
 The backend API for this application is implemented using JavaScript and Node/Express. The body of incoming requests is validated using the Express-Validator libary. I utilized the KnexJS library for query building and persisting application data to Heroku's PostgreSQL database. To implement the additional feature functionality, I created an additional 'warehouses' db table. Inventory items stored in the 'inventory' table have a warehouseId field (FOREIGN KEY) which references the id field (PRIMARY KEY) in the warehouses table to create a one-to-many relationship for a warehouse and assigned items. The SQL to create the db tables:
-
+```
 CREATE TABLE inventory (
     id serial PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
@@ -157,6 +157,6 @@ CREATE TABLE warehouses (
     name VARCHAR(100) UNIQUE NOT NULL,
     location TEXT
 );
-
+```
 
 
