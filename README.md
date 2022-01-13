@@ -43,7 +43,7 @@ warehouse object:
 ```
 
 ## API Testing examples
-Below I have attached some examples of API usage for my backend application using Postman. Using the same Req body data I have shown below will result in responses with appropriate error codes (I have designed my application to reject creating duplicate warehouses and adding duplicated inventory items)
+Below I have attached some examples of API usage for my backend application using Postman. Using the same Req body data I have shown below will result in responses with appropriate error codes (I have designed my application to reject creating duplicate warehouses and adding duplicated inventory items). Feel free to try anyways if you would like to see the error handling in my application as well.
 
 ### Ex: Create a new Warehouse (additional feature)
 POST `https://shopify-backend-2022.herokuapp.com/warehouses`
@@ -139,4 +139,24 @@ status code: 201 Created
     }
 ]
 ```
-## Implementation Details
+## Basic Implementation Details
+The backend API for this application is implemented using JavaScript and Node/Express. The body of incoming requests is validated using the Express-Validator libary. I utilized the KnexJS library for query building and persisting application data to Heroku's PostgreSQL database. To implement the additional feature functionality, I created an additional 'warehouses' db table. Inventory items stored in the 'inventory' table have a warehouseId field (FOREIGN KEY) which references the id field (PRIMARY KEY) in the warehouses table to create a one-to-many relationship for a warehouse and assigned items. The SQL to create the db tables:
+
+CREATE TABLE inventory (
+    id serial PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    stock BIGINT DEFAULT 0,
+    description TEXT,
+    warehouseId INT NOT NULL DEFAULT 1,
+    CONSTRAINT fk_warehouse FOREIGN KEY(warehouseId) REFERENCES warehouses(id)
+
+);
+
+CREATE TABLE warehouses (
+    id serial PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    location TEXT
+);
+
+
+
