@@ -110,5 +110,32 @@ status code: 201 Created
     "warehouseid": 3
 }
 ```
-
+### Ex: Retrieve all current inventory items
+GET `https://shopify-backend-2022.herokuapp.com/inventory/items`
+Response: 
+status code: 201 Created
+```javascript
+    {
+        "id": 1,
+        "name": "Item1",
+        "stock": "5",
+        "description": "first item added to inventory",
+        "warehouseid": 2
+    },
+    {
+        "id": 3,
+        "name": "Item2WithNewName",
+        "stock": "10",
+        "description": "change stock and name of item",
+        "warehouseid": 1
+    },
+    {
+        "id": 6,
+        "name": "SampleItem",
+        "stock": "10",
+        "description": "new item description",
+        "warehouseid": 3
+    }
+]
+```
 
